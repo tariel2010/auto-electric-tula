@@ -3,75 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Профессиональный автоэлектрик-диагност в Туле. Компьютерная диагностика, ремонт электрооборудования автомобиля">
-    <title>Автоэлектрик-диагност в Туле | Ремонт автоэлектроники</title>
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Galaxy AutoElectric</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a66efa;
+            --dark: #0a0a23;
+            --space: #1a1a2e;
+            --text: #e6e6fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+        }
+
+        .header {
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            opacity: 0.1;
+            transform: rotate(45deg);
+            z-index: -1;
+            animation: gradientFlow 20s linear infinite;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 35, 0.95);
+            padding: 1rem;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        .services {
+            padding: 5rem 2rem;
+            background: var(--space);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: 0.3s;
+            border: 1px solid rgba(108, 92, 231, 0.3);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.2);
+        }
+
+        @keyframes gradientFlow {
+            0% { transform: rotate(45deg) translateX(0); }
+            100% { transform: rotate(45deg) translateX(-50%); }
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 0 10px var(--primary); }
+            to { text-shadow: 0 0 20px var(--secondary), 0 0 30px var(--secondary); }
+        }
+
+        /* Добавьте другие стили и медиа-запросы по необходимости */
+    </style>
 </head>
 <body>
-    <!-- Preloader -->
-    <div id="preloader" class="preloader">
-        <div class="loader"></div>
-    </div>
+    <canvas class="stars" id="stars"></canvas>
+    
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#home">Главная</a></li>
+            <li><a href="#services">Услуги</a></li>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+    </nav>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <a class="brand" href="/">
-                    <img src="assets/img/logo.svg" alt="Логотип автоэлектрика" width="40" height="40">
-                    <span>АвтоЭлектрик</span>
-                </a>
-                <ul class="nav-menu">
-                    <li><a href="#services"><i class="fas fa-tools"></i> Услуги</a></li>
-                    <li><a href="#advantages"><i class="fas fa-certificate"></i> Преимущества</a></li>
-                    <li><a href="#contact"><i class="fas fa-phone"></i> Контакты</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="animate__animated animate__fadeInDown">Профессиональный ремонт автоэлектроники</h1>
-                <p class="hero-subtitle">Компьютерная диагностика • Чип-тюнинг • Ремонт ЭБУ</p>
-                <a href="#contact" class="cta-button pulse">Срочная запись</a>
-            </div>
+    <section class="hero" id="home">
+        <div class="header">
+            <h1>Galaxy AutoElectric</h1>
+            <p>Космический уровень электрооборудования вашего авто</p>
         </div>
     </section>
 
-    <!-- Services Grid -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2>Наши услуги</h2>
-            <div class="grid">
-                <!-- Сервисные карточки -->
+    <section class="services" id="services">
+        <div class="service-grid">
+            <div class="service-card">
+                <i class="fas fa-car-battery fa-3x"></i>
+                <h3>Диагностика</h3>
+                <p>Полная компьютерная диагностика электронных систем</p>
             </div>
+            <!-- Добавьте другие сервисы -->
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <h3>Контакты</h3>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> [Ваш адрес]</li>
-                        <li><i class="fas fa-phone"></i> <a href="tel:+71234567890">[Ваш телефон]</a></li>
-                        <li><i class="fas fa-clock"></i> Пн-Пт: 9:00-19:00</li>
-                    </ul>
-                </div>
-                <div class="contact-map">
-                    <!-- Вставьте iframe карты -->
-                </div>
-            </div>
-        </div>
-    </section>
+    <script>
+        // Анимация звёздного неба
+        const canvas = document.getElementById('stars');
+        const ctx = canvas.getContext('2d');
 
-    <script src="assets/js/main.js"></script>
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function createStars() {
+            ctx.fillStyle = '#FFF';
+            for(let i = 0; i < 200; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const radius = Math.random() * 1.5;
+                ctx.beginPath();
+                ctx.arc(x, y, radius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function animateStars() {
+            ctx.fillStyle = 'rgba(10, 10, 35, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            createStars();
+            requestAnimationFrame(animateStars);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        animateStars();
+
+        // Плавный скролл
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
